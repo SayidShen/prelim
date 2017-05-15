@@ -1,3 +1,0 @@
-# prelimssh
-
-juST A TRIAL
