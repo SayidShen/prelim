@@ -1,0 +1,158 @@
+\documentclass[12pt]{beamer} %slightly bigger font
+\usetheme{default} 
+\setbeamertemplate{navigation symbols}{} %gets rid of navigation symbols
+\setbeamertemplate{footline}{} %gets rid of bottom navigation bars
+%\setbeamertemplate{footline}[page number]{} %use this, if you want page numbers
+
+\setbeamertemplate{itemize items}[circle] %I like round bullet points
+\setlength\parskip{10pt} % I like white space between paragraphs
+
+\setbeamertemplate{frametitle continuation}[from second][ ]
+
+% Here is a `helper' functions to save typing, later
+\newcommand{\mystart}[1]{ \section{#1}\begin{frame}[allowframebreaks, fragile] \frametitle{#1} } 
+
+% information for the title slide
+\title{How To Cite \\ (with BibTeX)} % title infomation
+\author{Ken Rice}
+\institute{STAT/BIOST 572}
+\date{\today}
+
+%\usepackage{natbib}           % for author year citations \citet \citep
+
+\bibliographystyle{apalike} % 'plain' will be fine for many purposes
+
+\begin{document}
+
+\begin{frame} 
+  \titlepage 
+\end{frame} 
+
+\mystart{Using BibTeX}
+
+BibTeX is \TeX's citation manager. Given a file containing bibliographic information, it will;
+\begin{itemize}
+  \item Insert citations like \cite{rice:2008} in your document, in place of $\backslash$\texttt{cite$\{$rice:2008$\}$} in the source code
+  \item Construct a bibliography at the end of the document, in whatever format you desire (e.g. Vancouver, Harvard)
+  \item Automatically re-label everything if, during revision, you include new references, or re-order references, or correct typos in existing references
+\end{itemize}
+
+Once you have such a file, its contents can be used again in any other document; this is a \textbf{huge} time-saver. (I've been using and expanding \texttt{KenRefs.bib} since 1998)
+
+\end{frame}
+\mystart{Using BibTeX: file structure}
+Bibliography files (with \texttt{.bib} extensions) are text files with entries like the following;
+\vspace{-0.2in} \begin{small}
+\begin{verbatim}
+@article{Cox:regr:1972, #this is the `citation key'
+    author = {Cox, D. R.},
+    title = {Regression Models and Life-tables 
+(with Discussion)},
+    year = {1972},
+    journal = {Journal of the Royal Statistical 
+Society, Series B: Methodological},
+    volume = {34},
+    pages = {187--220}
+}
+\end{verbatim}
+\end{small}
+\begin{itemize}
+  \item \vspace{-0.4in}The citation key should be sane, short, and memorable
+  \item Current Index to Statistics enables cutting/pasting all of this, for many articles -- another huge time-saver
+\end{itemize}
+
+\pagebreak
+
+Some standard \LaTeX~rules apply;
+\begin{itemize}
+  \item \vspace{-0.2in}White spaces don't matter
+  \item Closing parentheses and commas do matter
+  \item Typos results in irritating error messages
+\end{itemize}
+
+Some non-standard rules;
+\begin{itemize}
+  \item \vspace{-0.2in}Separate authors by \texttt{and}
+  \item When citing $>1$ paper, separate their keys by commas \textbf{only} (no whitespace)
+  \item Some `fields' are required, e.g. omitting an article's \texttt{title} will lead to an error message. 
+  \item Omitting e.g. publisher address should just give a warning
+  \item Capitalize names yourself; protect lower-case with e.g. \texttt{$\{$de$\}$Villiers}
+\end{itemize}
+
+\end{frame}
+\mystart{Using BibTeX: making citations}
+
+In your \LaTeX ~source code, use $\backslash$\texttt{cite$\{$keyname$\}$} wherever you want the citation to appear
+
+\begin{itemize}
+  \item Most times, use $\sim\backslash\!$\texttt{cite$\{$keyname$\}$}, to enforce a space between the preceding character and e.g. `(Rice, 2008)' 
+  \item See also $\backslash$\texttt{nocite$\{$keyname$\}$}, which `silently' adds a reference to the bibliography (This line of source code includes a \texttt{nocite} citation of Cox's 1972 paper -- so it appears in the references, but not here)\nocite{cox:regr:1972}
+  \item In the preamble, declare $\backslash\!$\texttt{bibliographystyle}$\{$\texttt{plain}$\}$
+  \item At the end of the source code, $\backslash\!$\texttt{bibliography}$\{$\texttt{kenrefs}$\}$ to get the bibliography (note no $\texttt{.bib}$ extension)
+\end{itemize}
+
+\pagebreak
+
+\LaTeX ~makes a separate file of bibliographic information, which is updated as \LaTeX~`compiles' your source file sequentially. Therefore, to inegrate your document and this information;
+
+\begin{enumerate}
+  \item \LaTeX~your file -- to set up required citations
+  \item Run BibTeX  -- this constructs a \texttt{.bbl} file for your document
+  \item \LaTeX~your file again \textbf{twice}
+\end{enumerate}
+
+Realistically, the last changes you make to drafts are to e.g. typos, not references. If you run BibTeX after you've finished citation-related edits, you will run \LaTeX ~ enough times anyway.
+
+\end{frame}
+\mystart{Using BibTeX: unusual citations}
+
+Not everything you'll cite is a journal article;
+\begin{itemize}
+  \item See classes $@$\texttt{book}, $@$\texttt{inproceedings}, $@$\texttt{misc} etc 
+  \item Web pages can be cited, but whenever possible cite something on paper
+  \item \texttt{R} gives you its BibTeX entry using \texttt{citation()}, or e.g. \texttt{toBibtex(citation("sandwich"))}
+  \item When citing books for specific points, give the page(s) in the main text, e.g. Casella and Berger (2001) pp 166--168. When citing a chapter or other large chunk of a book, use the $@$\texttt{inbook} class.
+\end{itemize}
+
+\pagebreak
+
+A couple of other formats of citation;
+
+\begin{itemize}
+  \item $\backslash$\texttt{citet} give a `textual' citation; $\backslash$\texttt{citet$\{$jon90$\}$} produces Jones et al. (1990)
+  \item $\backslash$\texttt{citep} give a `parenthetical' citation; $\backslash$\texttt{citep$\{$jon90$\}$} produces (Jones et al., 1990)
+  \item These can be useful when talking directly about a book or paper -- rather than about the \textit{result} contained in that book or paper
+  \item They are both part of the \texttt{natbib} package, which does not play nicely with \texttt{beamer} ... and so are not illustrated here
+  \item See also the \texttt{biblatex} package, which can do textual and parenthetical citations, and many other things
+\end{itemize}
+
+\end{frame}
+
+\mystart{Using BibTeX: what to cite?}
+
+For methods work, consider whether to cite;
+\begin{itemize}
+  \item The paper that give the source of the general idea (e.g. Neyman \& Scott (1946) showing by example that not all MLEs are consistent)
+  \item A paper, book or textbook that explains the idea, and how it applies to whole areas of research (e.g. Casella and Berger)
+\end{itemize} 
+
+If citations indicate `this statement is justified', the latter is most helpful. For scholarly literature reviews, get near(er) the source.
+
+When citing, try to have the paper/book open in front of you
+
+\end{frame}
+
+\mystart{References/Recommended Reading}
+
+Some example BibTeX output;
+
+\nocite{gope:swan:1990,high:hand:1993,Ehre:writ:1982,cox:regr:1972,halm:1970} 
+
+\bibliography{smallbibfile}
+
+\end{frame}
+
+
+\end{document}
+
+

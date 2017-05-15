@@ -1,0 +1,36 @@
+\begin{thebibliography}{}
+
+\bibitem[Cox, 1972]{cox:regr:1972}
+Cox, D.~R. (1972).
+\newblock Regression models and life-tables (with discussion).
+\newblock {\em Journal of the Royal Statistical Society, Series B:
+  Methodological}, 34:187--220.
+
+\bibitem[Ehrenberg, 1982]{Ehre:writ:1982}
+Ehrenberg, A. S.~C. (1982).
+\newblock Writing technical papers or reports.
+\newblock {\em The American Statistician}, 36:326--329.
+
+\bibitem[Gopen and Swan, 1990]{gope:swan:1990}
+Gopen, G. and Swan, J. (1990).
+\newblock The science of scientific writing.
+\newblock {\em American Scientist}, 78:550--558.
+
+\bibitem[Halmos, 1970]{halm:1970}
+Halmos, P. (1970).
+\newblock How to write mathematics.
+\newblock {\em L'Enseignment Mathematique}, 16:123--152.
+
+\bibitem[Higham, 1993]{high:hand:1993}
+Higham, N.~J. (1993).
+\newblock {\em Handbook of Writing for the Mathematical Sciences}.
+\newblock SIAM [Society for Industrial and Applied Mathematics].
+
+\bibitem[Rice, 2008]{rice:2008}
+Rice, K. (2008).
+\newblock Equivalence {B}etween {C}onditional and {R}andom-{E}ffects
+  {L}ikelihoods for {P}air-{M}atched {C}ase-{C}ontrol {S}tudies.
+\newblock {\em Journal of the American Statistical Association},
+  103(481):385--396.
+
+\end{thebibliography}
