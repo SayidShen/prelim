@@ -10,7 +10,6 @@
 
 %% Useful packages
 \usepackage{amsmath}
-%\usepackage{hyperref}
 \usepackage{amssymb}
 \usepackage{mathtools}
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -18,10 +17,9 @@
 \usepackage{graphicx}
 \usepackage{graphics}
 \usepackage{subcaption}
-\usepackage[colorinlistoftodos]{todonotes}
+%\usepackage[colorinlistoftodos]{todonotes}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{amsthm}
-\usepackage{tensor}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \usepackage{bbm}
@@ -30,23 +28,19 @@
 \renewcommand{\cal}{\mathcal}
 \DeclareMathOperator*{\minimize}{minimize}
 \DeclareMathOperator*{\maximize}{maximize}
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-\algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}%
-\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 \setlength{\parskip}{1em}
 \newcommand{\E}{\mathbb{E}}
-\makeatletter
-  \def\title@font{\Large\bfseries}
-  \let\ltx@maketitle\@maketitle
-  \def\@maketitle{\bgroup%
-    \let\ltx@title\@title%
-    \def\@title{\resizebox{\textwidth}{!}{%
-      \mbox{\title@font\ltx@title}%
-    }}%
-    \ltx@maketitle%
-  \egroup}
-\makeatother
+% \makeatletter
+%   \def\title@font{\Large\bfseries}
+%   \let\ltx@maketitle\@maketitle
+%   \def\@maketitle{\bgroup%
+%     \let\ltx@title\@title%
+%     \def\@title{\resizebox{\textwidth}{!}{%
+%       \mbox{\title@font\ltx@title}%
+%     }}%
+%     \ltx@maketitle%
+%   \egroup}
+% \makeatother
 
 
 
@@ -89,7 +83,7 @@ However, there is one distinct drawback of linear smoothers---they are not local
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width = 0.6\textwidth]{homo.pdf}
+\includegraphics[width = 0.6\textwidth]{Figures/homo.pdf}
 \caption{Examples of functions with homogeneous smoothness and inhomogeneous smoothness}
 \label{fig:homo}
 \end{figure}
@@ -100,7 +94,7 @@ The above-mentioned defects of linear smoothers motivated the development of non
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width = 0.6\textwidth]{ssvslars.pdf}
+\includegraphics[width = 0.6\textwidth]{Figures/ssvslars.pdf}
 \caption{Comparison of fit of smoothing splines and locally adaptive splines for true function with inhomogeneous smoothness}
 \label{fig:ssvslars}
 \end{figure}
@@ -114,7 +108,7 @@ where $y\in\RR^n$ is the observation signal of length $n$ and $\lambda$ is the t
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width = 0.8\textwidth]{diagram.pdf}
+\includegraphics[width = 0.8\textwidth]{Figures/diagram.pdf}
 \caption{Comparison of minimax convergence rate of linear smoothers and nonlinear smoothers}
 \label{fig:diagram}
 \end{figure}
@@ -169,7 +163,7 @@ thus the $(k+1)$-st difference operator penalizes the change in the $k$-th order
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width = 0.8\textwidth]{Figure1.pdf}
+\includegraphics[width = 0.8\textwidth]{Figures/Figure1.pdf}
 \caption{Examples of trend filtering fits of order $k =0, 1, 2$. The solution to \eqref{tf} are only defined on the input points $x_i = i/n$ wit h $i=1,2,\ldots, n$, but we use linear interpolation to display a "continuous" version of trend filtering.}
 \label{fig:Figure1_examples}
 \end{figure}
@@ -192,7 +186,7 @@ where $\|\cdot\|_0$ is the number of nonzero entries. Note that $D^{(k+1)}$ take
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width = 1.0\textwidth]{Figure2.pdf}
+\includegraphics[width = 1.0\textwidth]{Figures/Figure2.pdf}
 \caption{Comparison of trend filtering and regression splines with the same knots to demonstrate the over-shrinkage nature of generalized Lasso.}
 \label{fig:Figure2_overshrinkage}
 \end{figure}
@@ -200,7 +194,7 @@ where $\|\cdot\|_0$ is the number of nonzero entries. Note that $D^{(k+1)}$ take
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width = 0.6\textwidth]{Figure3.pdf}
+\includegraphics[width = 0.6\textwidth]{Figures/Figure3.pdf}
 \caption{Different orders of discrete difference of cubic trend filtering. Each order of discrete difference is computed by $D^{(k+1)}\hat{u}$ for $k=0,1,2$, where $\hat{u}$ is the solution to \eqref{tf}.}
 \label{fig:Figure3_discrete}
 \end{figure}
@@ -214,15 +208,15 @@ The trend filtering problem \eqref{tf} is equivalent to the following Lasso prob
 \label{eq:tf_lasso}
 \end{align}
 in that the solution satisfies $\hat{u} = H\hat{\alpha}$. Here the design matrix $H\in\RR^n$ is given by
-\begin{align}
+\begin{equation}
 H_{ij} = 
 \begin{cases}
 (\frac{i}{n})^{j-1}, & \text{for } i = 1,\ldots, n, j=1,\ldots, k+1\\
 0, & \text{for } i \leq j-1, j\geq k+2\\
 \sigma_{i-j+1}^{(k)} \cdot k!/n^k, &\text{for } i > j-1, j\geq k+2
 \end{cases}
-\label{Hcumsum}
-\end{align}
+\label{eq:H_cumsum}
+\end{equation}
 where $\sigma_i^{(0)} = 1$ for all $i$ and
 \begin{align*}
 \sigma^{(k)}_i = \sum_{j=1}^i \sigma_j^{(k-1)}
@@ -230,7 +224,9 @@ where $\sigma_i^{(0)} = 1$ for all $i$ and
 that is $\sigma_i^{(k)}$ is the $k$th order cumulative sum of $(1,1,\ldots, 1)\in\RR^i$.
 \end{lemma}
 It is worth mentioning that \eqref{eq:tf_lasso} is a generalization for the case $k =1$ in Section 3.2 of \cite{kim2009ell_1}. Notice that the design matrix in \eqref{eq:tf_lasso} is close to a lower-triangular matrix and thus has a sparse structure, which makes general lasso solver very efficient for solving \eqref{eq:tf_lasso}. We will compare the Lasso solver with two other algorithms in Section \ref{subsec:algo}. 
+
 \subsection{Continuous Representation of Trend Filtering}
+\label{subsec:ct_tf}
 Note that the solution $\hat{u}$ to \eqref{tf} is just discrete values at the input $(x_1,\ldots, x_n)$ but doesn't tell us the exact form of our estimator $\hat{f}$ of the true regression function $f_0$. This will be problematic if we want to predict the value of $f_0$ at points outside the input. This motivates us to think about the following question: given the equivalent Lasso form \eqref{eq:tf_lasso} of trend filtering, is there a set of basis functions whose evaluations at the input $(x_1,\ldots, x_n)$ give the design matrix $H$? The following lemma gives an affirmative answer.
 
 \begin{lemma}
@@ -260,12 +256,12 @@ g_{k+1+j}(x) = (x-x_j)^k\mathbbm{1}_{[x\geq x_j]}, \quad \text{for }j=1,\ldots, 
 \begin{figure}[t!]
 \centering
    \begin{subfigure}[b]{1\textwidth}
-   \includegraphics[width=1\linewidth]{Figure8.pdf}
+   \includegraphics[width=1\linewidth]{Figures/Figure8.pdf}
    \caption{}
 \end{subfigure}
 
 \begin{subfigure}[b]{1\textwidth}
-   \includegraphics[width=1\linewidth]{Figure8b.pdf}
+   \includegraphics[width=1\linewidth]{Figures/Figure8b.pdf}
    \caption{}
 \end{subfigure}
 
@@ -296,6 +292,7 @@ The following lemma adopts the falling factorial basis \eqref{eq:fall_fact} to d
 For inputs $x_1<\ldots<x_n$ and the basis functions $(h_1,\ldots, h_n)$ defined in \eqref{eq:fall_fact}, define the linear subspace of functions
 \begin{align}
 \cal{H}_k = \text{span}\{h_1,\ldots, h_n\} = \Big\{\sum_{j=1}^n \alpha_jh_j:\alpha_1,\ldots, \alpha_n\in\RR\Big\}
+\label{eq:linear_class}
 \end{align}
 If the inputs are evenly-spaced, $x_i=\frac{i}{n}$ for $i=1,\ldots, n$, then the continuous minimization problem
 \begin{align}
@@ -426,7 +423,7 @@ Note that \eqref{eq:ss_newform} is extremely similar to the original formulation
 \label{subsec:sssimu}
 \begin{figure}[t]
 \centering
-\includegraphics[width = 0.6\textwidth]{Figure4.pdf}
+\includegraphics[width = 0.6\textwidth]{Figures/Figure4.pdf}
 \caption{Comparison of trend filtering and smoothing spline over the same "hills" data consider in Figure \ref{fig:ssvslars}. The trend filtering fit with $df = 19$ shown in the top right panel clearly outperforms both smoothing spline fit.}
 \label{fig:Figure4_ssvstfhills}
 \end{figure}
@@ -438,7 +435,7 @@ The fitted value of smoothing spline and trend filtering of order $3$ is shown i
 
 \begin{figure}[t]
 \centering
-\includegraphics[width = 0.6\textwidth]{Figure5.pdf}
+\includegraphics[width = 0.6\textwidth]{Figures/Figure5.pdf}
 \caption{Comparison of trend filtering and smoothing spline over the heterogeneous Doppler data. Top left panel: true function with noisy observations; top right panel: trend filtering fit with 50 degrees freedom; bottom left panel: smoothing spline with 50 degrees of freedom; bottom right panel: smoothing spline with 90 degrees of freedom. Same defect of smoothing spline appear as in the "hills" data. Small degrees of freedom leads to over-smoothing of the oscillation on the left while large degrees leads to under-smoothing of the relatively smooth part on the right.}
 \label{fig:Figure5_ssvstfdoppler}
 \end{figure}
@@ -447,7 +444,7 @@ We then compare smoothing spline and trend filtering on another well-known heter
 
 \begin{figure}[t]
 \centering
-\includegraphics[width = 0.8\textwidth]{Figure6.pdf}
+\includegraphics[width = 0.8\textwidth]{Figures/Figure6.pdf}
 \caption{Comparison of cubic trend filtering and cubic smoothing spline in terms of MSE, for the "hills" data example on the left, and the Doppler example on the right. In each setup, trend filtering and smoothing spline estimators were fit over a range of degrees of freedom values. The red curves display the loss for trend filtering, and the blue curves for smoothing spline. The results were averaged over 50 simulated data sets, and the standard deviations are denoted by dotted lines. In these examples, trend filtering has a generally better predictive accuracy than smoothing splines, especially for models of low to intermediate degrees of freedom.}
 \label{fig:Figure6_mse}
 \end{figure}
@@ -567,7 +564,7 @@ Even though Lemma \eqref{lemma:lasequivtf} shows that the solutions of trend fil
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width = 0.8\textwidth]{Figure7.pdf}
+\includegraphics[width = 0.8\textwidth]{Figures/Figure7.pdf}
 \caption{Comparison of cubic trend filtering and locally adaptive spline ($k = 3$) with the same tuning parameter on the "hills" data and Doppler data. Left panel shows the "hills" data, and the right panel shows the Doppler data. The fits of the two methods can be seen to be extremely similar. Except for some tiny difference at $x= 0.1$ in the Doppler data, the difference between these two methods are only numerical.}
 \label{fig:Figure7_lasvstf}
 \end{figure}
@@ -579,6 +576,24 @@ One way to solve the locally adaptive spline is to solve its Lasso form \eqref{e
 
 Authors of \cite{mammen1997locally} proposes an alternative to solve the locally adaptive spline. For $k = 1$, the proposed algorithm solves \eqref{eq:las_constrained} for a given $\lambda$ in $\cal{O}(n\log(n))$ operations and $\cal{O}(n^2)$ operations for all $\lambda$. However, there is no guaranteed cost of the algorithm for higher orders ($k\geq 2$)(the authors conjecture the algorithm takes also $\cal{O}(n^2)$ operations for all $\lambda$). We therefore conclude that locally adaptive spline is not as computationally efficient as trend filtering. 
 
+\section{Real Data Study}
+\label{sec:real_data}
+
+\begin{figure}[t!]
+\centering
+\includegraphics[width = 0.9\textwidth]{Figures/Figure9.pdf}
+\caption{The top left panel shows $n=1024$ measurements of frequency and energy in a NMR spectrum. The top right panel shows the fit of cubic trend filtering with 209 degrees of freedom(which is chosen through cross-validation). The bottom left panel and bottom right panel show the fit of smoothing spline and wavelet with the same degrees of freedom. Smoothing spline clearly over-smoothes the spikes(especially the 1st, 4th and 5th one). Trend filtering and wavelet smoothing give very similar fit and both perform very well on both the smooth part and the spikes. Close inspection shows that trend filtering does slightly better at the smooth part, as wavelet estimate is slightly wiggly at the transitions between flats and spikes.}
+\label{fig:Figure_9}
+\end{figure}
+
+
+In this section, we examine one of the Nuclear Magnetic Resonance (NMR) spectra data to compare the performance of different methods. The data is available at \url{https://github.com/bryanhanson/ChemoSpec}. This data contains a collection of 14 NMR spectra of essential oil extracted from the
+palm \emph{Serenoa repens} or Saw Palmetto, which is commonly used to treat
+benign prostatic hyperplasia (BPH) in men. The NMR uses the magnetic properties of atomic nuclei to get information about an oil sample. The $x$ axis indexes the frequency of the spectrum, which in our oil sample there are 32,768 frequencies. The $y$ axis marks the corresponding amount of energy in that frequency. Since a large part of the frequencies have close to 0 energy, we choose an informative segment of $n = 1024$ frequencies and corresponding energy count. The true measurement is shown in the top left panel of Figure \ref{fig:Figure_9}.
+
+We compare the performance of trend filtering, smoothing spline and wavelet smoothing. The fit of locally adaptive spline is omitted here due to its extreme similarity to trend filtering, as shown in Section \ref{sec:las_compare}. The smoothing spline is implemented by the \textit{smooth.spline} function in R, and wavelet smoothing is implemented by the \textit{wavethresh} package in R. The "wavelets on the interval" option in the \textit{wd} function in the \textit{wavethresh} package is chosen to handle the boundary conditions (as periodicity and symmetry are not appropriate assumptions for the boundary behavior in this example), which uses the algorithm of Cohen, Daubechies and Vial\cite{cohen1993wavelets}. Note that wavelet smoothing usually requires the sample size $n$ to be a power of $2$, thus we choose our segment length as $1024$ to accommodate this requirement. We use the continuous time representation from Section \ref{subsec:ct_tf} and cross validation to choose the best degrees of freedom for trend filtering, which gives us $df = 209$, we then calibrate the fit of smoothing spline and wavelet using this same degrees of freedom.
+
+The estimates of trend filtering, smoothing spline and wavelet smoothing are shown in the top right panel, bottom left panel and bottom right panel of Figure \ref{fig:Figure_9} respectively. Trend filtering clearly outperforms smoothing spline in this case as smoothing spline severely over-smoothes the spikes, especially the 1st, 4th and 5th one. Wavelet smoothing gives very similar estimate to trend filtering, performing pretty well on both the smooth part and the spikes. Close inspection shows that trend filtering does slightly better at the smooth part, as the wavelet estimate is slightly wiggly at the transitions between flats and spikes.
 
 \bibliography{paperreview}
 \end{document}
