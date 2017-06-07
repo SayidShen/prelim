@@ -1,0 +1,5 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{Outline}{2}{0}{1}
+\beamer@sectionintoc {2}{Your talks}{3}{0}{2}
+\beamer@sectionintoc {3}{A slide with a picture in it}{5}{0}{3}
+\beamer@sectionintoc {4}{A slide with several pictures}{6}{0}{4}

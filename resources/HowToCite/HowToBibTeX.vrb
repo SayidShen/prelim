@@ -1,0 +1,8 @@
+\frametitle{References/Recommended Reading} 
+
+Some example BibTeX output;
+
+\nocite{gope:swan:1990,high:hand:1993,Ehre:writ:1982,cox:regr:1972,halm:1970}
+
+\bibliography{smallbibfile}
+

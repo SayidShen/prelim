@@ -1,0 +1,7 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{Using BibTeX}{2}{0}{1}
+\beamer@sectionintoc {2}{Using BibTeX: file structure}{3}{0}{2}
+\beamer@sectionintoc {3}{Using BibTeX: making citations}{5}{0}{3}
+\beamer@sectionintoc {4}{Using BibTeX: unusual citations}{7}{0}{4}
+\beamer@sectionintoc {5}{Using BibTeX: what to cite?}{9}{0}{5}
+\beamer@sectionintoc {6}{References/Recommended Reading}{10}{0}{6}

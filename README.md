@@ -1,2 +1,3 @@
 # prelim
-Materials for the PhD preliminary exam STAT 572
+
+Materials for the PhD prelim class STAT 572
